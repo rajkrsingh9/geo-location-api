@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #212121;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    p {
+        color: white;
+    }
+
+    button {
+        background-color: rgb(169, 132, 203);
+        border-radius: 20px;
+        font-size: larger;
+        padding: 10px;
+        margin: 300px 200px 0 200px;
+    }
+</style>
+
+<body>
+    <button class="geo-btn">Show User Location</button>
+    <div class="showDetails">User location details</div>
+
+    <script>
+        // console.log(navigator.geolocation.getCurrentPosition);
+
+        const showDetails=document.querySelector('.showDetails');
+
+
+
+        document.querySelector('.geo-btn').addEventListener('click', function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    // console.log(position.coords.latitude)
+                    //console.log(position.coords.longitude)
+                    const { latitude, longitude } = position.coords;
+                    // console.log(latitude);
+                    // console.log(longitude);
+
+
+                    showDetails.innerText=`Latitude = ${latitude} and Longitude=${longitude}`;            
+
+
+                }, (error)=>{
+                    showDetails.textContent=error.message;
+                    // console.log(error.message);
+                
+                })
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
